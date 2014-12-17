@@ -1,15 +1,15 @@
 import string
 
 
-def cf_eval(str):
+def cf_eval(in_str):
     chars = "etaoin"    # 5 most common English characters
     freqs = [0] * 26    # frequency array
-    str = str.lower()
+    in_str = in_str.lower()
 
     # counting occurences of each letter
     fpos = 0            # position in freq array
     for c in string.lowercase:
-        for d in str:
+        for d in in_str:
             if c == d:
                 freqs[fpos] += 1
         fpos += 1
@@ -19,9 +19,9 @@ def cf_eval(str):
     for pos in [i for i, j in enumerate(freqs) if j == fmax]:
         for c in chars:
             if pos == string.lowercase.index(c):
-                score += 1
-    if ' ' in str:
-        score += 10
-    if '\n' in str or '\r' in str or '\f' in str or '\t' in str:
-        score -= 5
+                score += 10
+    if ' ' in in_str:
+        score += 5
+    if '\n' in in_str or '\r' in in_str or '\f' in in_str or '\t' in in_str:
+        score -= 10
     return score
