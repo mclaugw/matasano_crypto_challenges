@@ -3,7 +3,9 @@ import string
 import charfreq
 from collections import Counter
 
-inp_dat = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
+inp_dat = '1b37373331363f78151b7f2b783431333d\
+           78397828372d363c78373e783a393b3736'
+
 
 def get_top_x_scores(data, x):
     chars_by_result = {}
@@ -27,4 +29,4 @@ if __name__ == '__main__':
 
     print "most likely keys: "
     for i in range(len(top)):
-        print " " + top[i][0] + ": " , top[i][1]
+        print " " + top[i][0] + ": ", top[i][1]

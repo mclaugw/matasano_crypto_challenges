@@ -3,6 +3,7 @@ import base64
 from pprint import pprint
 import chal03_single_char_xor_cipher
 
+
 def hamming(str1, str2):
     assert len(str1) == len(str2)
     bin1 = bin(int(binascii.hexlify(str1), 16))[2:]
@@ -13,21 +14,24 @@ def hamming(str1, str2):
             dist += 1
     return dist
 
+
 def keysize_diff(d, size):
     dist = hamming(d[0:size], d[size:size * 2]) + \
            hamming(d[size * 2:size * 3], d[size * 3:size * 4])
     return [size, dist / (float(size) * 2)]
+
 
 def chunk(d, size):
     if size < 1:
         size = 1
     return [d[i:i + size] for i in range(0, len(d), size)]
 
+
 def transpose(chunks):
     transposed = []
-    for i in range (0, len(chunks[0])):
+    for i in range(0, len(chunks[0])):
         s = ""
-        for j in range (0, len(chunks)):
+        for j in range(0, len(chunks)):
             s += chunks[j][i]
         transposed.append(s)
     return transposed
