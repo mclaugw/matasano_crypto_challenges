@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import base64
 import chal03
 
 strings = [line.rstrip('\n') for line in open('chal04_input.txt')]
@@ -11,6 +12,7 @@ for line in strings:
         strings.remove(line)
 
 for line in strings:
+    line = base64.b16decode(line, True)
     top = chal03.get_top_x_scores(line, 3)
     if(len(top) > 0):
         all_results.append([line, top])

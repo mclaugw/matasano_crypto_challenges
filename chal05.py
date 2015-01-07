@@ -16,5 +16,4 @@ def repeating_xor(data, k):
     return ''.join('%02x' % i for i in out)     # format for hex
 
 if __name__ == '__main__':
-    if repeating_xor(mad_rhymes, vanilla_key) == known_result:
-        print 'success'
+    assert repeating_xor(mad_rhymes, vanilla_key) == known_result

@@ -3,7 +3,7 @@
 import binascii
 import base64
 from pprint import pprint
-import chal03_single_char_xor_cipher
+import chal03
 
 
 def hamming(str1, str2):
@@ -52,6 +52,7 @@ def b64_2_hex(data):
 if __name__ == '__main__':
     with open('chal06_input.txt', 'r') as input_file:
         data = input_file.read().replace('\n', '')
+    data = base64.b64decode(data)
     #with open('./definition_of_base64.input', 'r') as input_file:
     #    data = input_file.read().replace('\n', '')
     #data = "RE9PS0lFQlVUVFM="
@@ -60,13 +61,13 @@ if __name__ == '__main__':
     #print "b16encode: ", base64.b16encode(base64.b64decode(data))
     #dists = [avg_dist(data, i) for i in range(2, 41)]
     dists = [avg_dist(data, i) for i in range(2, 40)]
-    keysize = [dists[0][i] for i, j in enumerate(dists) if j == min(dists)]
-    data = base64.b64decode(data)
+    #keysize = [dists[0][i] for i, j in enumerate(dists) if j == min(dists)]
+    keysize = [dists[i][0] for i in range(len(dists))]
     data_chunks = chunk(data, keysize[0])
     transposed = transpose(data_chunks)
     transposed = [base64.b64encode(i) for i in transposed]
     transposed = [b64_2_hex(i) for i in transposed]
 
     for i in range(len(transposed)):
-        top = chal03_single_char_xor_cipher.get_top_x_scores(transposed[i], 3)
+        top = chal03.get_top_x_scores(transposed[i], 10)
         pprint(top)
