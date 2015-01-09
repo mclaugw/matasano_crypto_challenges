@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import string
 
 
@@ -19,9 +21,9 @@ def cf_eval(in_str):
     for pos in [i for i, j in enumerate(freqs) if j == fmax]:
         for c in chars:
             if pos == string.lowercase.index(c):
-                score += 10
+                score += 50
     if ' ' in in_str:
-        score += 5
+        score += 10
     if '\n' in in_str or '\r' in in_str or '\f' in in_str or '\t' in in_str:
-        score -= 10
+        score -= 50
     return score
